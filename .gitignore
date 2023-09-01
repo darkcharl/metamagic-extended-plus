@@ -1,0 +1,5 @@
+release/zips/**
+.vscode/
+**/*.pyc
+
+prep/modded/
