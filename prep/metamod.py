@@ -70,8 +70,7 @@ class Spell:
         """ Text based Spell object initiatization """
 
         """ Simple format checks """
-        lines = self.block.split('\n')
-        lines = [l for l in lines if l.strip()]
+        lines = [l for l in self.block.split('\n') if l.strip()]
         if len(lines) < 3:
             print(self.block)
             raise SpellParseException('too few lines')
@@ -80,11 +79,15 @@ class Spell:
             raise SpellParseException('missing spell name header')
         elif lines[1][:16] != 'type "SpellData"':
             print(self.block)
+            raise SpellParseException('missing spelldata field')
+        elif lines[2][:16] != 'data "SpellType"':
+            print(self.block)
             raise SpellParseException('missing type field')
 
+
         """ Critical properties check """
-        self.name = re.sub('new entry "([^"]+)"', r'\1', lines[0])
-        self.type = re.sub('data "SpellType" "([^"]+)"', r'\1', lines[2])
+        self.name = re.sub(r'new entry "([^"]+)".*', r'\1', lines[0])
+        self.type = re.sub(r'data "SpellType" "([^"]+)".*', r'\1', lines[2])
         if not self.name or not self.type:
             raise SpellParseException('no name or type')
 
@@ -242,8 +245,8 @@ class Spell:
         }
         for spell in self.upleveled:
             spell.using = f"{spell.postfix_using(postfix)}"
-            # if spell.is_leveled():
-            #    spell.data['RootSpellID'] = f"{spell.postfix_name(postfix)}"
+            if spell.is_leveled():
+               spell.data['RootSpellID'] = f"{spell.postfix_root_spell_id(postfix)}"
             self.originals[spell.name] = spell.duplicate(
                 name=f"{spell.postfix_name(postfix)}")
         return self.originals.values()

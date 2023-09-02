@@ -63,26 +63,35 @@ def test_spell_empty():
         s = Spell(block="")
     assert 'too few lines' in str(e.value)
 
+def test_spell_type():
+    block = textwrap.dedent("""\
+        new entry "Test_Spell"
+        type "SpellData"
+        data "SpellType" "Test"\
+    """)
+    s = Spell(block=block)
+    assert s.type == "Test"
 
 def test_spell_malformatted_header():
     with pytest.raises(SpellParseException) as e:
         block = textwrap.dedent("""\
-            new entry "Test_Spell"\
+            new entry "Test_Spell"
             type "Bogus"
-            data "SpellType" "Test"
+            data "SpellType" "Test"\
         """)
         s = Spell(block=block)
-    assert 'missing type field' in str(e.value)
+    assert 'missing spelldata field' in str(e.value)
 
 
 def test_spell_malformatted_type():
     with pytest.raises(SpellParseException) as e:
         block = textwrap.dedent("""\
-            new entry "Test_Spell"\
+            new entry "Test_Spell"
             type "SpellData"
-            data "HAHA"
+            data "HAHA"\
         """)
         s = Spell(block=block)
+        print(s.to_text())
     assert 'missing type field' in str(e.value)
 
 
@@ -222,15 +231,6 @@ def test_spell_top_original_has_no_root_spell():
         assert not spell.root_spell_id
 
 
-def test_spell_leveled_original_has_root_spell():
-    s = Spell(block=test_blocks['scorchingray_3'])
-    s_list = s.create_originals(postfix='Original')
-    for spell in s_list:
-        if spell.is_leveled():
-            print(spell.to_text())
-            assert spell.root_spell_id == 'Projectile_ScorchingRay_Original'
-
-
 """ SpellLibrary """
 
 # def test_spell_library_load_non_existent():
@@ -331,6 +331,14 @@ def test_self_containerization_exception():
     assert 'is referencing itself for containerization' in str(e.value)
 
 
+def test_spell_leveled_original_bless_has_root_spell():
+    sl = test_libraries['bless']
+    bless_spell = sl.spell_map['Target_Bless']
+    for spell in bless_spell.create_originals():
+        if spell.is_leveled():
+            print(spell.to_text())
+            assert spell.root_spell_id == 'Target_Bless_Original'
+
 """" Setup test cases """
 
 
@@ -338,6 +346,7 @@ def setup_module(module):
     global test_libraries, test_spells
 
     libraries = {
+        'bless': 'testdata/bless/*.txt',
         'enlarge_reduce': 'testdata/enlarge_reduce/*.txt',
         'hex': 'testdata/hex/*.txt',
     }
