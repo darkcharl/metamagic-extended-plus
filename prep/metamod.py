@@ -244,11 +244,12 @@ class Spell:
             self.name: self.duplicate(name=self.postfix_name(postfix))
         }
         for spell in self.upleveled:
-            spell.using = f"{spell.postfix_using(postfix)}"
-            if spell.is_leveled():
-               spell.data['RootSpellID'] = f"{spell.postfix_root_spell_id(postfix)}"
-            self.originals[spell.name] = spell.duplicate(
+            original_spell = spell.duplicate(
                 name=f"{spell.postfix_name(postfix)}")
+            original_spell.using = f"{spell.postfix_using(postfix)}"
+            if original_spell.is_leveled():
+               original_spell.data['RootSpellID'] = f"{spell.postfix_root_spell_id(postfix)}"
+            self.originals[spell.name] = original_spell
         return self.originals.values()
 
     def decontainerize(self):
@@ -349,7 +350,7 @@ class Spell:
         return self.postfix_attribute('name', postfix, separator)
 
     def postfix_using(self, postfix, separator='_'):
-        return self.postfix_attribute('using', postfix, separator)
+        return f"{self.using}_{postfix}"
 
     def postfix_root_spell_id(self, postfix, deprioritized=False):
         return f"{self.root_spell_id}_{postfix}"
@@ -539,8 +540,8 @@ class SpellLibrary:
             print(f"Creating variants for {spell.name}...")
 
             """ Save the original spells """
-            # implemented_spells.extend(spell.create_originals())
-            # implemented_spells.extend(spell.relink_children())
+            implemented_spells.extend(spell.create_originals())
+            implemented_spells.extend(spell.relink_children())
 
             """ Implement each level """
             for s in spell.get_upleveled_chain():
@@ -558,7 +559,6 @@ class SpellLibrary:
                 detached_spell = s.create_meta(
                     postfix='Detached', deprioritized=True)
                 detached_spell.unset_flag('IsConcentration')
-                # detached_spell.add_cost('DetachmentCharge:1')
                 detached_spell.add_cost(f'SorceryPoints:{2*s.level+1}')
                 detached_spell.add_requirement_condition(
                     "HasStatus('METAMAGIC_DETACHED', context.Source)")
@@ -603,8 +603,8 @@ class SpellLibrary:
             print(f"Creating variants for {spell.name}...")
 
             """ Save the original spells """
-            # implemented_spells.extend(spell.create_originals())
-            # implemented_spells.extend(spell.relink_children())
+            implemented_spells.extend(spell.create_originals())
+            implemented_spells.extend(spell.relink_children())
 
             """ Implement each level """
             for s in spell.get_upleveled_chain():
@@ -625,19 +625,10 @@ class SpellLibrary:
                         transmuted_spell.data['DamageType'] = spell.damage_type
                     transmuted_spell.swap_element(
                         to_element=element, from_element=spell.damage_type)
-                    # transmuted_spell.add_cost('TransmutationCharge:1')
                     transmuted_spell.add_cost('SorceryPoint:1')
                     transmuted_spell.add_requirement_condition(
                         "HasStatus('METAMAGIC_TRANSMUTED', context.Source)")
                     member_spells.append(transmuted_spell)
-
-                    if transmuted_spell.damage_type != element:
-                        print(s.to_text())
-                        print()
-                        print(common_spell.to_text())
-                        print()
-                        print(transmuted_spell.to_text())
-                        raise Exception(f"yikes, {element}")
 
                 """ Link modified spells to container """
                 s.containerize()

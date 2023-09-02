@@ -339,8 +339,8 @@ def test_spell_leveled_original_bless_has_root_spell():
             print(spell.to_text())
             assert spell.root_spell_id == 'Target_Bless_Original'
 
-"""" Setup test cases """
 
+"""" Setup test cases """
 
 def setup_module(module):
     global test_libraries, test_spells
