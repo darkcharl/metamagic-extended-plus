@@ -71,11 +71,15 @@ class Spell:
 
         """ Simple format checks """
         lines = self.block.split('\n')
+        lines = [l for l in lines if l.strip()]
         if len(lines) < 3:
+            print(self.block)
             raise SpellParseException('too few lines')
         elif lines[0][:9] != "new entry":
+            print(self.block)
             raise SpellParseException('missing spell name header')
         elif lines[1][:16] != 'type "SpellData"':
+            print(self.block)
             raise SpellParseException('missing type field')
 
         """ Critical properties check """
@@ -93,6 +97,7 @@ class Spell:
                 if has_using:
                     self.using = has_using.group('using')
                     continue
+                print(self.block)
                 raise SpellParseException(f'invalid line {line}')
             self.data[is_data.group('attribute')] = is_data.group('value')
 
@@ -499,6 +504,10 @@ class SpellLibrary:
 
             """ Child, find and add to parent """
             parent_spell = self.spell_map.get(s.using, None)
+            if not parent_spell:
+                print(f"parent not found: {s}")
+                raise SpellLinkException(
+                    "spell is referencing unknown parent")
             parent_spell.children.add(s)
             if s.name == parent_spell.name:
                 raise SpellLinkException(
@@ -740,7 +749,7 @@ def print_spells(opts):
 
 
 if __name__ == "__main__":
-    default_path = 'orig/**/*.txt'
+    default_path = 'source/**/*.txt'
     parser = argparse.ArgumentParser()
     subparser = parser.add_subparsers(dest='command')
 
