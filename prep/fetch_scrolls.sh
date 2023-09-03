@@ -17,7 +17,7 @@ for SRCDIR in "${SOURCES[@]}"; do
   [ ! -d "${DSTDIR}" ] && mkdir "${DSTDIR}"
   echo "${SRCDIR} -> ${DSTDIR}"
   
-  SCROLL_FILES=$(grep -rl 'id="Stats" type="FixedString" value="OBJ_Scroll_' ${SRCDIR}/*.lsx)
+  SCROLL_FILES=$(grep -rl 'id="Stats" type="FixedString" value="OBJ_Scroll_' "${SRCDIR}"/*.lsx)
   for SCROLL in $SCROLL_FILES; do
     NAME=${SCROLL##*/}
     IS_INSTRUMENTED=$(grep -cf enabled_spells.txt "$SCROLL")
