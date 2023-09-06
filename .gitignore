@@ -1,6 +1,7 @@
-release/zips/**
 .vscode/
 **/*.pyc
 
 prep/modded/
 prep/modded_scrolls/
+
+release/*.zip
