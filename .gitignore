@@ -3,3 +3,4 @@ release/zips/**
 **/*.pyc
 
 prep/modded/
+prep/modded_scrolls/
