@@ -84,7 +84,6 @@ class Spell:
             print(self.block)
             raise SpellParseException('missing type field')
 
-
         """ Critical properties check """
         self.name = re.sub(r'new entry "([^"]+)".*', r'\1', lines[0])
         self.type = re.sub(r'data "SpellType" "([^"]+)".*', r'\1', lines[2])
@@ -248,7 +247,7 @@ class Spell:
                 name=f"{spell.postfix_name(postfix)}")
             original_spell.using = f"{spell.postfix_using(postfix)}"
             if original_spell.is_leveled():
-               original_spell.data['RootSpellID'] = f"{spell.postfix_root_spell_id(postfix)}"
+                original_spell.data['RootSpellID'] = f"{spell.postfix_root_spell_id(postfix)}"
             self.originals[spell.name] = original_spell
         return self.originals.values()
 
@@ -540,8 +539,8 @@ class SpellLibrary:
             print(f"Creating variants for {spell.name}...")
 
             """ Save the original spells """
-            implemented_spells.extend(spell.create_originals())
-            implemented_spells.extend(spell.relink_children())
+            # implemented_spells.extend(spell.create_originals())
+            # implemented_spells.extend(spell.relink_children())
 
             """ Implement each level """
             for s in spell.get_upleveled_chain():
@@ -603,8 +602,8 @@ class SpellLibrary:
             print(f"Creating variants for {spell.name}...")
 
             """ Save the original spells """
-            implemented_spells.extend(spell.create_originals())
-            implemented_spells.extend(spell.relink_children())
+            # implemented_spells.extend(spell.create_originals())
+            # implemented_spells.extend(spell.relink_children())
 
             """ Implement each level """
             for s in spell.get_upleveled_chain():
