@@ -358,6 +358,20 @@ class Spell:
         if self.has_root_spell():
             self.data['RootSpellID'] = spellname
 
+    def decontainerize_children(self):
+        spells = []
+        if not self.children:
+            return []
+        for child in self.children:
+            """ Skip spells linked to the container """
+            if child.is_leveled() or self.is_member(child):
+                continue
+
+            child.decontainerize()
+            spells.append(child)
+
+        return spells
+
     def relink_children(self):
         """ 
             Relinks spells that inherit from properties directly from the
@@ -575,6 +589,9 @@ class SpellLibrary:
                 implemented_spells.append(s)
                 implemented_spells.extend(member_spells)
 
+            # Make sure children spells are not containers
+            implemented_spells.extend(spell.decontainerize_children())
+
             """ Register spells to spell group also """
             self.spell_groups[spell.name] = implemented_spells
             spells.extend(implemented_spells)
@@ -640,6 +657,9 @@ class SpellLibrary:
                 """ Register spells """
                 implemented_spells.append(s)
                 implemented_spells.extend(member_spells)
+
+            # Make sure children spells are not containers
+            implemented_spells.extend(spell.decontainerize_children())
 
             """ Register spells to spell group also """
             self.spell_groups[spell.name] = implemented_spells
