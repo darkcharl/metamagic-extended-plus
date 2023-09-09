@@ -572,7 +572,7 @@ class SpellLibrary:
                 detached_spell = s.create_meta(
                     postfix='Detached', deprioritized=True)
                 detached_spell.unset_flag('IsConcentration')
-                detached_spell.add_cost(f'SorceryPoints:{2*s.level+1}')
+                detached_spell.add_cost(f'SorceryPoint:{2*s.level+1}')
                 detached_spell.add_requirement_condition(
                     "HasStatus('METAMAGIC_DETACHED', context.Source)")
                 member_spells.append(detached_spell)
