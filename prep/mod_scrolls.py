@@ -39,7 +39,7 @@ def find_files(spells_re, src='.'):
 def load_spells_re():
     enabled_spells = load_enabled_spells()
     match_re = re.compile(
-        f'id="(S[kp][ei]llI[dD])" type="FixedString" value="({"|".join(enabled_spells)})"')
+        f'id="(SkillID)" type="FixedString" value="({"|".join(enabled_spells)})"')
     repl_re = r'id="\1" type="FixedString" value="\2_Common"'
     return match_re, repl_re
 
