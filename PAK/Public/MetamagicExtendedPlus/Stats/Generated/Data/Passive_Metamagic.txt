@@ -41,6 +41,8 @@ data "Properties" "IsToggled;ToggledDefaultAddToHotbar;MetaMagic"
 data "Boosts" "IF(IsCantrip() or IsSpell()):Reroll(Damage,20,false);UnlockSpellVariant(EmpoweredSpellCheck2(),ModifyUseCosts(Add,SorceryPoint,1,0),ModifyTooltipDescription(),ModifyIconGlow())"
 data "ToggleOnEffect" "VFX_Spells_Cast_Sorcerer_Metamagic_Empowered_HeadFX_01:Dummy_HeadFX"
 data "ToggleOffContext" "OnCastResolved"
+data "ToggleOnFunctors" "ApplyStatus(SELF,METAMAGIC_EMPOWERED,100,-1)"
+data "ToggleOffFunctors" "RemoveStatus(METAMAGIC_EMPOWERED)"
 
 new entry "Metamagic_Maximized"
 type "PassiveData"
@@ -55,6 +57,8 @@ data "Boosts" "IF(IsCantrip() or IsSpell()):MinimumRollResult(Damage,20);UnlockS
 data "ToggleOnEffect" "VFX_Spells_Cast_Sorcerer_Metamagic_Empowered_HeadFX_01:Dummy_HeadFX"
 data "ToggleOffContext" "OnCastResolved"
 data "ToggleGroup" "Metamagic"
+data "ToggleOnFunctors" "ApplyStatus(SELF,METAMAGIC_MAXIMIZED,100,-1)"
+data "ToggleOffFunctors" "RemoveStatus(METAMAGIC_MAXIMIZED)"
 
 new entry "Metamagic_Seeking"
 type "PassiveData"
