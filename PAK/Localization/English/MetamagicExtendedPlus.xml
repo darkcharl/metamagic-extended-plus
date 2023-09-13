@@ -2,7 +2,7 @@
 <contentList>
     <content contentuid="69e9ee61-12b1-4bab-aabf-eca1b96dc268" version="1">Detachment Charge</content>
     <content contentuid="374dfb86-1e77-420b-a32c-1fd1ec49c852" version="1">Metamagic: Detached Spell</content>
-    <content contentuid="d20581ce-251e-4a55-b257-827230aa563d" version="1">Removes concentration requirement.&lt;br&gt;&lt;br&gt;Costs [1] Sorcery Point per &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt; level used.</content>
+    <content contentuid="d20581ce-251e-4a55-b257-827230aa563d" version="1">Removes concentration requirement.&lt;br&gt;&lt;br&gt;Costs 1 + [1] Sorcery Point per &lt;LSTag Tooltip="SpellSlot"&gt;spell slot&lt;/LSTag&gt; level used.</content>
     <content contentuid="bfef4598-bd6d-4323-a650-3d4c080bde78" version="1">Metamagic: Empowered Spell</content>
     <content contentuid="18f6a18a-086e-492f-8ba7-f8fc342ecc6a" version="1">Boosts damage by rolling each spell damage die twice and keeping the larger.&lt;br&gt;&lt;br&gt;Costs [1] Sorcery Point per spell.</content>
     <content contentuid="h13be03aagfbfdg40b5g94c8g792f43b18f9d" version="2">Metamagic: Empowered Spell</content>
