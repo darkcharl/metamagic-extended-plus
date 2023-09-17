@@ -10,6 +10,7 @@ mod_sources = [
     "../../../Source/Gustav_PAK/Public/Gustav/RootTemplates",
     "../../../Source/Gustav_PAK/Public/GustavDev/RootTemplates",
     "../../SecretScrolls/PAK/Public/SecretScrolls/RootTemplates",
+    "../../SecretScrolls5eSpells/PAK/Public/SecretScrolls5eSpells/RootTemplates",
     "../../OmniscientWizards/PAK/Public/OmniscientWizards/RootTemplates",
 ]
 
