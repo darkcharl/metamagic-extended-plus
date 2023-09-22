@@ -31,5 +31,5 @@
     <content contentuid="9ee7aa0d-4c68-4b71-9c95-43fadc5fa475" version="1">Enables changing the damage type of elemental Spells.&lt;br&gt;&lt;br&gt;Costs [1] Sorcery Point per spell.</content>
     <content contentuid="267d2e1b-e471-491a-ad85-a790ae0e6751" version="1">Transmutation Charge</content>
     <content contentuid="b15e99d6-d7ce-456e-a02e-f20c0727d8c5" version="1">Exploit: Quickened Spell</content>
-    <content contentuid="d18a0b55-dede-47dc-9b24-568b960bc55e" version="1">Exploited spells channel raw Weave through the body of the caster to quicken spells.&lt;br&gt;&lt;br&gt;The process consumes [1] Sorcery Point but hurt the invoker, causing [2] per Spell Level.</content>
+    <content contentuid="d18a0b55-dede-47dc-9b24-568b960bc55e" version="1">Exploited spells channel raw Weave through the body of the caster to quicken spells.&lt;br&gt;&lt;br&gt;The process consumes [1] Sorcery Point but hurts the invoker, causing [2] per Spell Level.</content>
 </contentList>
