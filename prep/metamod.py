@@ -22,6 +22,7 @@ class SpellFilterOptions:
         self.path = None
         self.spell = None
         self.spellname = None
+        self.quiet = None
         self.verbose = None
         for k, v in kwargs.items():
             setattr(self, k, v)
@@ -747,10 +748,13 @@ def print_spells(opts):
         if opts.members and spell.members:
             print_descendants(spell, 'members')
             continue
-        print(spell.name)
-        if opts.verbose:
+        if not opts.verbose:
+            print(spell.name)
+        if opts.verbose > 1:
             print("-" * 80)
+        if opts.verbose:
             print(spell.to_text())
+        if opts.verbose > 1:
             print("-" * 80)
             print("Container: {}".format(spell.container))
             print("Root:      {}".format(spell.root_spell_id))
@@ -758,6 +762,7 @@ def print_spells(opts):
             print("Upleveled: {}".format(spell.joined_upleveled))
             print("Parent:    {}".format(str(spell.parent)))
             print("Children:  {}".format(spell.joined_children))
+        if opts.verbose:
             print()
 
 
@@ -788,6 +793,8 @@ if __name__ == "__main__":
         '-p', '--path', help='path to load spells from', default=default_path)
     spell_cmd.add_argument(
         '-s', '--spell', help='actual spells only', action='store_true')
+    spell_cmd.add_argument(
+        '-v', '--verbose', help='verbose mode', action='count', default=0)
     spell_cmd.add_argument(
         '-x', '--concentration', help='concentration spells only', action='store_true')
     spell_cmd.add_argument(
@@ -888,7 +895,6 @@ if __name__ == "__main__":
         setattr(opts, k, v)
 
     if command == 'spell':
-        opts.verbose = True
         print_spells(opts)
     elif command == 'list':
         opts.verbose = False
