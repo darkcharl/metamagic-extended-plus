@@ -9,8 +9,8 @@
                     <attribute id="Width" type="int32" value="64"/>
                 </node>
                 <node id="TextureAtlasPath">
-                    <attribute id="Path" type="string" value="Assets/Textures/Icons/Icons_MetamagicExtended.dds"/>
-                    <attribute id="UUID" type="FixedString" value="aa75c8b0-9fe4-4f46-94de-520055637cd1"/>
+                    <attribute id="Path" type="string" value="Assets/Textures/Icons/Icons_MetamagicExtendedPlus.dds"/>
+                    <attribute id="UUID" type="FixedString" value="c38a5fd8-ccbd-40da-af81-ee789c1d242b"/>
                 </node>
                 <node id="TextureAtlasTextureSize">
                     <attribute id="Height" type="int32" value="2048"/>
@@ -22,11 +22,17 @@
     <region id="IconUVList">
         <node id="root">
             <children>
-                <!-- Maximized Spell -->
                 <node id="IconUV">
                     <attribute id="MapKey" type="FixedString" value="Skill_Sorcerer_Passive_Metamagic_MaximizedSpell"/>
-                    <attribute id="U1" type="float" value="0.5625"/>
-                    <attribute id="U2" type="float" value="0.59375"/>
+                    <attribute id="U1" type="float" value="0.0"/>
+                    <attribute id="U2" type="float" value="0.03125"/>
+                    <attribute id="V1" type="float" value="0.0"/>
+                    <attribute id="V2" type="float" value="0.03125"/>
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" type="FixedString" value="Skill_Sorcerer_Passive_Metamagic_TripledSpell"/>
+                    <attribute id="U1" type="float" value="0.03125"/>
+                    <attribute id="U2" type="float" value="0.0625"/>
                     <attribute id="V1" type="float" value="0.0"/>
                     <attribute id="V2" type="float" value="0.03125"/>
                 </node>
