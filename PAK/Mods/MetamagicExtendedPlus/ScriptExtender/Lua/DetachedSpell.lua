@@ -1,4 +1,4 @@
-debugMode = true
+debugMode = false
 DetachedSpells = {}
 
 Ext.Require("Utils.lua")

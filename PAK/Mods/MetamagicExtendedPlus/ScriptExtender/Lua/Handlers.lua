@@ -1,3 +1,5 @@
+debugMode = false
+
 Ext.Require("Utils.lua")
 
 function StartedPreviewingSpellHandler(caster, spellName, isMostPowerful, hasMultipleLevels)

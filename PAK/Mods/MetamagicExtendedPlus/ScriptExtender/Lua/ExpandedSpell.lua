@@ -1,4 +1,4 @@
-debugMode = true
+debugMode = false
 radiusMultiplier = 2
 ExpandedSpells = {}
 
