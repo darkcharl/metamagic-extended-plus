@@ -1,8 +1,5 @@
-debugMode = false
 radiusMultiplier = 2
 ExpandedSpells = {}
-
-Ext.Require("Utils.lua")
 
 function ExpandSpell(spellName, activateExpansion)
     local spell = Ext.Stats.Get(spellName)

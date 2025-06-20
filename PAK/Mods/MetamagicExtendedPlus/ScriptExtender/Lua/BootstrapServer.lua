@@ -1,3 +1,5 @@
+debugMode = true
+
 Ext.Require("Utils.lua")
 Ext.Require("DetachedSpell.lua")
 Ext.Require("ExpandedSpell.lua")
