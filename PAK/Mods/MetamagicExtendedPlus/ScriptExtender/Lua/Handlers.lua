@@ -29,6 +29,7 @@ function SpellCastHandler(caster, spellName, spellType, spellElement, storyActio
     local spell = Ext.Stats.Get(spellName)
     if (debugMode) then
         print("--- MetamagicExtendedPlus: SpellCastHandler()")
+        _D(spell)
     end
 
     -- Automatically reset spell after cast or failed

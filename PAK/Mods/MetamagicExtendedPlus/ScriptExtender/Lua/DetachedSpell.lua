@@ -39,6 +39,8 @@ function DetachSpell(spellName, activateDetachment)
         end
         DetachedSpells[spellName] = nil
     end
+
+    Ext.Stats.Sync(spellName)
     
     if (debugMode) then
         print("--- MetamagicExtendedPlus: DetachSpell")
