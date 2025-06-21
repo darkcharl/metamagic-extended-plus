@@ -7,7 +7,7 @@ function DetachSpell(spellName, activateDetachment)
         for _, offset in pairs(property) do
             if property ~= nil then
                 for _, functor in pairs(offset.Functors) do
-                    if functor.TypeId == "CreateSurface" then
+                    if (functor.TypeId == "CreateSurface") then
                         if (activateDetachment) then
                             functor.IsControlledByConcentration = false
                         else
