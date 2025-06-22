@@ -64,6 +64,8 @@ function ExpandSpell(spellName, activateExpansion)
     
         ExpandedSpells[spellName] = nil
     end
+
+    Ext.Stats.Sync(spellName)
     
     if (debugMode) then
         print("--- MetamagicExtendedPlus: ExpandSpell")
